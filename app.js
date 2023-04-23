@@ -10,8 +10,8 @@
 
 var taskInput=document.getElementById("new-task");//Add a new task.
 var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incompleteTasks
-var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
+var incompleteTask=document.getElementById("incomplete-tasks");//ul of #incompleteTasks
+var completedTasks=document.getElementById("completed-tasks");//completed-tasks
 
 
 //New task list item
@@ -66,7 +66,7 @@ var addTask=function(){
     var listItem=createNewTaskElement(taskInput.value);
 
     //Append listItem to incompleteTaskHolder
-    incompleteTaskHolder.appendChild(listItem);
+    incompleteTask.appendChild(listItem);
     bindTaskEvents(listItem, taskCompleted);
 
     taskInput.value="";
@@ -121,7 +121,7 @@ var taskCompleted=function(){
 
     //Append the task list item to the #completed-tasks
     var listItem=this.parentNode;
-    completedTasksHolder.appendChild(listItem);
+    completedTasks.appendChild(listItem);
     bindTaskEvents(listItem, taskIncomplete);
 
 }
@@ -133,7 +133,7 @@ var taskIncomplete=function(){
     //When the checkbox is unchecked
     //Append the task list item to the #incompleteTasks.
     var listItem=this.parentNode;
-    incompleteTaskHolder.appendChild(listItem);
+    incompleteTask.appendChild(listItem);
     bindTaskEvents(listItem,taskCompleted);
 }
 
@@ -170,19 +170,19 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
 
 //cycle over incompleteTaskHolder ul list items
 //for each list item
-for (var i=0; i<incompleteTaskHolder.children.length;i++){
+for (var i=0; i<incompleteTask.children.length;i++){
 
     //bind events to list items chldren(tasksCompleted)
-    bindTaskEvents(incompleteTaskHolder.children[i],taskCompleted);
+    bindTaskEvents(incompleteTask.children[i],taskCompleted);
 }
 
 
 
 
 //cycle over completedTasksHolder ul list items
-for (var i=0; i<completedTasksHolder.children.length;i++){
+for (var i=0; i<completedTasks.children.length;i++){
     //bind events to list items chldren(tasksIncompleted)
-    bindTaskEvents(completedTasksHolder.children[i],taskIncomplete);
+    bindTaskEvents(completedTasks.children[i],taskIncomplete);
 }
 
 
